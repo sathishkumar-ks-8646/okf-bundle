@@ -27,14 +27,15 @@ BUNDLE = os.path.join(ROOT, 'bundle')
 DIST = os.path.join(ROOT, 'dist')
 REPO_NAME = 'analytics-okf'
 
-DEFAULT_REPO = 'https://github.com/zoho/analytics-okf'
-DEFAULT_SITE = 'https://www.zoho.com/analytics/api/v2/okf'
+DEFAULT_REPO = 'https://github.com/sathishkumar-ks-8646/analytics-okf'
+# The documentation-site mirror does not exist yet. While it is None the README footer claims only the
+# repository; set it once the page is live and the footer lists both again.
+DEFAULT_SITE = None
 DEFAULT_DOCS = 'https://www.zoho.com/analytics/api/v2/'
-# Where the bundle is actually served from today. README's `git clone` line and the "Canonical copies"
-# footer keep pointing at DEFAULT_REPO / DEFAULT_SITE (the intended permanent homes); every raw-file link
-# in README and llms.txt uses this base so that agents fetch a URL that resolves now.
-# Set to None once the repository moves to DEFAULT_REPO, and the raw base is derived from --repo-url.
-DEFAULT_BASE_URL = 'https://raw.githubusercontent.com/sathishkumar-ks-8646/analytics-okf/main'
+# None means the raw-file base is derived from --repo-url, which is correct now that DEFAULT_REPO is
+# where the bundle is actually served from. Set it explicitly only to point raw links somewhere other
+# than the repository the README tells people to clone.
+DEFAULT_BASE_URL = None
 
 
 def raw_base(repo_url, ref='main'):
@@ -47,6 +48,8 @@ def raw_base(repo_url, ref='main'):
 
 def readme(m, repo_url, site_url, docs_url, raw):
     c = m['counts']
+    canonical = (f'Canonical copies: [{repo_url}]({repo_url}) and [{site_url}]({site_url}).'
+                 if site_url else f'Canonical copy: [{repo_url}]({repo_url}).')
     return f"""# Zoho Analytics REST API v2 - Open Knowledge Format bundle
 
 Machine-readable, agent-friendly knowledge base for the [Zoho Analytics REST API v2]({docs_url}).
@@ -165,7 +168,7 @@ See [LICENSE.md](LICENSE.md).
 
 ---
 
-Canonical copies: [{repo_url}]({repo_url}) and [{site_url}]({site_url}).
+{canonical}
 """
 
 
