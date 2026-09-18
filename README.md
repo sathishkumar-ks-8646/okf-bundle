@@ -12,7 +12,7 @@ here. It is produced into `dist/` (git-ignored) by `tools/package_okf.py`.
 
 | Folder | Role | Edited by hand? |
 |---|---|---|
-| [`analytics-api-docs/`](analytics-api-docs/README.md) | **Input.** API reference markdown, OpenAPI specs, SDK samples and the common JSON. A **git submodule** of the [analytics-api-docs](https://github.com/sathish-dev-git/analytics-api-docs) repository, pinned to one commit and tracking `main`. | **Not here.** Edit in that repository, then move the pin (below). |
+| [`analytics-api-docs/`](analytics-api-docs/README.md) | **Input.** API reference markdown, OpenAPI specs, SDK samples and the common JSON. A **git submodule** of the [analytics-api-docs](https://github.com/sathishkumar-ks-8646/analytics-api-docs) repository, pinned to one commit and tracking `main`. | **Not here.** Edit in that repository, then move the pin (below). |
 | [`handwritten/`](handwritten/README.md) | **Input.** Cross-cutting concepts no API document provides: foundations, workflow playbooks, the bundle overview. Copied into the bundle on every build. | Yes. |
 | [`tools/`](tools/README.md) | Generator (`build_okf.py`), validator (`validate_okf.py`), packager (`package_okf.py`). | Only the configuration tables in `build_okf.py`, in normal operation. |
 | `bundle/` | **Output.** The generated OKF bundle (manifest name `zoho-analytics-rest-api-v2`). Deleted and rebuilt on every build. Committed so that every rebuild appears as a reviewable diff. | **Never.** |
@@ -25,7 +25,7 @@ here. It is produced into `dist/` (git-ignored) by `tools/package_okf.py`.
 
 ```
 analytics-api-docs/**  (submodule) ─┐
-handwritten/**                     ─┴─►  tools/build_okf.py ──►  bundle/  ──►  tools/validate_okf.py  ──►  tools/package_okf.py  ──►  dist/zoho-analytics-okf/
+handwritten/**                     ─┴─►  tools/build_okf.py ──►  bundle/  ──►  tools/validate_okf.py  ──►  tools/package_okf.py  ──►  dist/analytics-okf/
                                                               errors=0 broken_links=0                                   push to the public repo
 ```
 
@@ -58,7 +58,7 @@ python3 tools/package_okf.py --tarball --version X.Y.Z    # URLs come from the D
 4. Review `git diff bundle/`; commit the submodule pin, any builder configuration change and the bundle
    together, so the history says which source revision produced which bundle.
 5. When releasing, follow [agent-guide/06-rules-and-release-checklist.md](agent-guide/06-rules-and-release-checklist.md):
-   package into `dist/`, review the output, then push `dist/zoho-analytics-okf/` to the public repository.
+   package into `dist/`, review the output, then push `dist/analytics-okf/` to the public repository.
 
 ## For AI agents
 

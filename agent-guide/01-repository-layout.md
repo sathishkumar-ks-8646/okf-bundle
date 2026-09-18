@@ -38,8 +38,8 @@ API source documents are the one thing not stored here: they arrive through a gi
 │   └── package_okf.py                bundle -> dist/ public repo layout (+ tarball)
 ├── bundle/                           THE BUNDLE - generated, deleted and rebuilt on every build; committed
 └── dist/                             git-ignored: packaged public repo (git-initialised) and release tarballs
-    ├── zoho-analytics-okf/           README.md, llms.txt, LICENSE.md, CHANGELOG.md, okf/, tools/validate.py, .github/
-    └── zoho-analytics-okf-<version>.tar.gz
+    ├── analytics-okf/           README.md, llms.txt, LICENSE.md, CHANGELOG.md, okf/, tools/validate.py, .github/
+    └── analytics-okf-<version>.tar.gz
 ```
 
 The bundle directory is named `bundle/` in this repository; the bundle's own name, as declared in its
@@ -56,7 +56,7 @@ The bundle directory is named `bundle/` in this repository; the bundle's own nam
 | `handwritten/` | Bundle maintainers | **Yes**, for cross-cutting rules and playbooks. |
 | `tools/build_okf.py` | Bundle maintainers | Yes, but only its configuration tables in normal operation. |
 | `bundle/` | `build_okf.py` | **Never.** |
-| `dist/` | `package_okf.py` | Never by hand, except `git` operations inside `dist/zoho-analytics-okf/`. Git-ignored in this repository. |
+| `dist/` | `package_okf.py` | Never by hand, except `git` operations inside `dist/analytics-okf/`. Git-ignored in this repository. |
 
 ## Two pairs that must stay in step
 

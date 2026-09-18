@@ -77,14 +77,14 @@ python3 tools/validate_okf.py
 # → must end "errors=0 warnings=0 broken_links=0".
 
 # 3. (Optional) preview what the public copy would change
-git -C dist/zoho-analytics-okf status
+git -C dist/analytics-okf status
 
 # 4. Package the public distribution
 python3 tools/package_okf.py --tarball --version X.Y.Z
-# → assembles dist/zoho-analytics-okf/ (README.md, llms.txt, LICENSE.md, CHANGELOG.md, okf/, tools/validate.py, .github/)
-#   and, with --tarball, dist/zoho-analytics-okf-X.Y.Z.tar.gz.
+# → assembles dist/analytics-okf/ (README.md, llms.txt, LICENSE.md, CHANGELOG.md, okf/, tools/validate.py, .github/)
+#   and, with --tarball, dist/analytics-okf-X.Y.Z.tar.gz.
 # Other flags as needed: --repo-url, --site-url, --docs-url, --base-url, --ref, --out.
-# Re-packaging preserves dist/zoho-analytics-okf/.git — the working tree is replaced, history survives.
+# Re-packaging preserves dist/analytics-okf/.git — the working tree is replaced, history survives.
 ```
 
 Notes on step 4:
@@ -94,7 +94,7 @@ Notes on step 4:
   `DEFAULT_BASE_URL` points raw-file links there and the `git clone` line and "Canonical copies" footer
   keep the permanent `DEFAULT_REPO`. When the repository moves, set `DEFAULT_BASE_URL = None`.
 - The `CHANGELOG.md` template in `package_okf.py` only describes the first release. For every release
-  after that, either hand-edit `CHANGELOG.md` in `dist/zoho-analytics-okf/` after packaging, or extend
+  after that, either hand-edit `CHANGELOG.md` in `dist/analytics-okf/` after packaging, or extend
   the template in `package_okf.py` (`changelog()`).
-- Committing and pushing `dist/zoho-analytics-okf/` is a manual step after packaging — none of the
+- Committing and pushing `dist/analytics-okf/` is a manual step after packaging — none of the
   three tools perform `git commit` or `git push` themselves.

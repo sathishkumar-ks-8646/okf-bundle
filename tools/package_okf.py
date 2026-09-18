@@ -4,7 +4,7 @@ package_okf.py - Assemble the public distribution of the Zoho Analytics OKF bund
 
 Produces a self-contained, git-ready directory:
 
-    dist/zoho-analytics-okf/
+    dist/analytics-okf/
       README.md            human landing page (rendered by GitHub)
       llms.txt             AI/agent entry point (llmstxt.org convention)
       LICENSE.md           licence terms
@@ -15,7 +15,7 @@ Produces a self-contained, git-ready directory:
 
 Usage:
     python3 tools/package_okf.py
-    python3 tools/package_okf.py --version 1.1.0 --repo-url https://github.com/<org>/zoho-analytics-okf
+    python3 tools/package_okf.py --version 1.1.0 --repo-url https://github.com/<org>/analytics-okf
     python3 tools/package_okf.py --tarball
 
 Nothing here touches git remotes or pushes. Review the output, then push it yourself.
@@ -25,16 +25,16 @@ import argparse, json, os, shutil, subprocess, sys, tarfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUNDLE = os.path.join(ROOT, 'bundle')
 DIST = os.path.join(ROOT, 'dist')
-REPO_NAME = 'zoho-analytics-okf'
+REPO_NAME = 'analytics-okf'
 
-DEFAULT_REPO = 'https://github.com/zoho/zoho-analytics-okf'
+DEFAULT_REPO = 'https://github.com/zoho/analytics-okf'
 DEFAULT_SITE = 'https://www.zoho.com/analytics/api/v2/okf'
 DEFAULT_DOCS = 'https://www.zoho.com/analytics/api/v2/'
 # Where the bundle is actually served from today. README's `git clone` line and the "Canonical copies"
 # footer keep pointing at DEFAULT_REPO / DEFAULT_SITE (the intended permanent homes); every raw-file link
 # in README and llms.txt uses this base so that agents fetch a URL that resolves now.
 # Set to None once the repository moves to DEFAULT_REPO, and the raw base is derived from --repo-url.
-DEFAULT_BASE_URL = 'https://raw.githubusercontent.com/sathish-dev-git/zoho-analytics-okf/main'
+DEFAULT_BASE_URL = 'https://raw.githubusercontent.com/sathishkumar-ks-8646/analytics-okf/main'
 
 
 def raw_base(repo_url, ref='main'):

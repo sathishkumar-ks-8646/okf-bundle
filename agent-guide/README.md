@@ -8,7 +8,7 @@ All paths in this guide are relative to the repository root (the folder that hol
 `tools/` and `bundle/`). The repository may be cloned anywhere; nothing here depends on its absolute location.
 
 `analytics-api-docs/` is a **git submodule** of the
-[analytics-api-docs](https://github.com/sathish-dev-git/analytics-api-docs) repository, pinned to one
+[analytics-api-docs](https://github.com/sathishkumar-ks-8646/analytics-api-docs) repository, pinned to one
 commit. Where a playbook says to edit a file under `analytics-api-docs/`, that edit is made in that
 repository - either directly there, or inside the submodule on a branch that is pushed there - and this
 repository then moves its pin: `git submodule update --remote --merge analytics-api-docs`. Its own
@@ -27,7 +27,7 @@ analytics-api-docs/zenesis-oas-samples/*.json     │                           
 analytics-api-docs/zoho-analytics-api-common.json │                                 ▼
 handwritten/**/*.md                    ─┘     tools/validate_okf.py  (must print errors=0 broken_links=0)
                                                                           │
-                                              tools/package_okf.py  ──►  dist/zoho-analytics-okf/   (public repo, git-ignored here)
+                                              tools/package_okf.py  ──►  dist/analytics-okf/   (public repo, git-ignored here)
 ```
 
 ## Where to start, by task
@@ -54,7 +54,7 @@ cd <repo-root>
 git submodule update --init           # once per clone: fetch analytics-api-docs at the pinned commit
 python3 tools/build_okf.py            # regenerates bundle/ ; prints endpoints=… errors=… sdk=…
 python3 tools/validate_okf.py         # must end with errors=0 warnings=0 broken_links=0
-git -C dist/zoho-analytics-okf status # (optional) see what the public copy would change
+git -C dist/analytics-okf status # (optional) see what the public copy would change
 python3 tools/package_okf.py --tarball --version X.Y.Z   # only when releasing
 ```
 
